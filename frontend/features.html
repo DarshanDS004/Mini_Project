@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - MindCare India</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .feature-section {
+            margin-bottom: 80px;
+        }
+        
+        .feature-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .feature-header h2 {
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .feature-header p {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+        
+        .feature-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .feature-card h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+        
+        .feature-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+        
+        .comparison-table {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+        
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .comparison-table th {
+            background: #667eea;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-size: 18px;
+        }
+        
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .check {
+            color: #4caf50;
+            font-size: 24px;
+        }
+        
+        .cross {
+            color: #f44336;
+            font-size: 24px;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🏥 MindCare India</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Platform Features</h1>
+        <p>Comprehensive mental health assessment powered by artificial intelligence</p>
+    </section>
+    
+    <div class="container">
+        <!-- Core Features -->
+        <section class="feature-section">
+            <div class="feature-header">
+                <h2>Core Features</h2>
+                <p>Everything you need for comprehensive mental health assessment and support</p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🤖</span>
+                    <h3>AI-Powered Assessment</h3>
+                    <p>Our machine learning model analyzes 27 comprehensive questions covering:</p>
+                    <ul class="feature-list">
+                        <li>Sleep patterns and quality</li>
+                        <li>Lifestyle and exercise habits</li>
+                        <li>Stress and anxiety levels</li>
+                        <li>Social support systems</li>
+                        <li>Work-life balance</li>
+                        <li>Financial stress factors</li>
+                    </ul>
+                    <p><strong>90.40% Accuracy</strong> - Trained on 5,000+ diverse cases</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">♿</span>
+                    <h3>Disability-Friendly Design</h3>
+                    <p>Built with accessibility at the core:</p>
+                    <ul class="feature-list">
+                        <li>Screen reader compatible</li>
+                        <li>Keyboard navigation support</li>
+                        <li>High contrast color schemes</li>
+                        <li>Large, readable fonts</li>
+                        <li>Simple, intuitive interface</li>
+                        <li>Disability-specific assessments</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>Comprehensive Analytics</h3>
+                    <p>Track your mental health journey:</p>
+                    <ul class="feature-list">
+                        <li>Assessment history tracking</li>
+                        <li>Progress monitoring</li>
+                        <li>Risk factor identification</li>
+                        <li>Personalized recommendations</li>
+                        <li>Trend analysis</li>
+                        <li>Exportable reports</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3>Privacy & Security</h3>
+                    <p>Your data is safe with us:</p>
+                    <ul class="feature-list">
+                        <li>End-to-end encryption</li>
+                        <li>Secure JWT authentication</li>
+                        <li>Anonymous assessments option</li>
+                        <li>HIPAA-compliant storage</li>
+                        <li>No data selling</li>
+                        <li>Regular security audits</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">💡</span>
+                    <h3>Personalized Recommendations</h3>
+                    <p>Get tailored advice based on your results:</p>
+                    <ul class="feature-list">
+                        <li>Lifestyle improvement tips</li>
+                        <li>Stress management techniques</li>
+                        <li>Exercise recommendations</li>
+                        <li>Sleep hygiene guidance</li>
+                        <li>Professional help referrals</li>
+                        <li>Crisis helpline numbers</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🚨</span>
+                    <h3>Crisis Detection & Alerts</h3>
+                    <p>Immediate support for critical cases:</p>
+                    <ul class="feature-list">
+                        <li>Automatic risk level detection</li>
+                        <li>Critical case flagging</li>
+                        <li>24/7 crisis helpline access</li>
+                        <li>Emergency contact notifications</li>
+                        <li>Professional referral system</li>
+                        <li>Follow-up reminders</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Assessment Process -->
+        <section class="feature-section">
+            <div class="feature-header">
+                <h2>How It Works</h2>
+                <p>Simple 4-step process to get your mental health assessment</p>
+            </div>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">1️⃣</span>
+                    <h3>Create Account</h3>
+                    <p>Quick 2-minute registration with email and basic information. Your data is encrypted and secure.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">2️⃣</span>
+                    <h3>Complete Assessment</h3>
+                    <p>Answer 27 comprehensive questions about your mental health, lifestyle, and well-being. Takes 5-7 minutes.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">3️⃣</span>
+                    <h3>AI Analysis</h3>
+                    <p>Our ML model analyzes your responses using Decision Tree algorithm with 90.40% accuracy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">4️⃣</span>
+                    <h3>Get Results</h3>
+                    <p>Receive instant results with mental health status, risk factors, and personalized recommendations.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Comparison Table -->
+        <section class="feature-section">
+            <div class="feature-header">
+                <h2>Why Choose MindCare India?</h2>
+                <p>Compare us with traditional mental health assessment methods</p>
+            </div>
+            
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>MindCare India</th>
+                            <th>Traditional Methods</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Accessibility</strong></td>
+                            <td><span class="check">✓</span> 24/7 Online Access</td>
+                            <td><span class="cross">✗</span> Appointment Required</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost</strong></td>
+                            <td><span class="check">✓</span> Free</td>
+                            <td><span class="cross">✗</span> ₹500-2000 per session</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Speed</strong></td>
+                            <td><span class="check">✓</span> Instant Results</td>
+                            <td><span class="cross">✗</span> Days/Weeks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Privacy</strong></td>
+                            <td><span class="check">✓</span> Anonymous Option</td>
+                            <td><span class="cross">✗</span> In-person Visit</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Disability Support</strong></td>
+                            <td><span class="check">✓</span> Fully Accessible</td>
+                            <td><span class="cross">✗</span> Limited</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Follow-up</strong></td>
+                            <td><span class="check">✓</span> Unlimited Assessments</td>
+                            <td><span class="cross">✗</span> Additional Cost</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Language Support</strong></td>
+                            <td><span class="check">✓</span> Multiple Languages</td>
+                            <td><span class="cross">✗</span> Limited</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="feature-section" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px; border-radius: 20px; color: white;">
+            <h2 style="color: white; margin-bottom: 20px;">Ready to Get Started?</h2>
+            <p style="font-size: 20px; margin-bottom: 30px;">Take your first step towards better mental health today</p>
+            <a href="register.html" class="btn" style="background: white; color: #667eea;">Start Free Assessment</a>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MindCare India - Government of India Initiative</p>
+            <p>Empowering Mental Health for All Citizens</p>
+        </div>
+    </footer>
+</body>
+</html>

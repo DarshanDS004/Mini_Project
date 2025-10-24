@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - MindCare India</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .contact-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .contact-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .contact-card h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .contact-card p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .contact-card a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .crisis-section {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 60px;
+        }
+        
+        .crisis-section h2 {
+            color: #d32f2f;
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .crisis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .crisis-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .crisis-card h4 {
+            color: #d32f2f;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .crisis-card .phone {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .crisis-card .availability {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-section {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .form-section h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .btn {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            width: 100%;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .message {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .faq-section {
+            margin-top: 60px;
+        }
+        
+        .faq-section h2 {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .faq-item {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .faq-item h4 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .faq-item p {
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🏥 MindCare India</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Get in Touch</h1>
+        <p>We're here to support your mental health journey</p>
+    </section>
+    
+    <div class="container">
+        <!-- Crisis Helplines -->
+        <div class="crisis-section">
+            <h2>🚨 Emergency Mental Health Helplines</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 20px;">
+                If you're in crisis or need immediate support, please call one of these helplines
+            </p>
+            
+            <div class="crisis-grid">
+                <div class="crisis-card">
+                    <h4>AASRA</h4>
+                    <div class="phone">9152987821</div>
+                    <div class="availability">24/7 Support</div>
+                </div>
+                
+                <div class="crisis-card">
+                    <h4>Vandrevala Foundation</h4>
+                    <div class="phone">18602662345</div>
+                    <div class="availability">24/7 Support</div>
+                </div>
+                
+                <div class="crisis-card">
+                    <h4>iCall</h4>
+                    <div class="phone">9152987821</div>
+                    <div class="availability">Mon-Sat, 8 AM - 10 PM</div>
+                </div>
+                
+                <div class="crisis-card">
+                    <h4>Snehi Foundation</h4>
+                    <div class="phone">91-22-27546669</div>
+                    <div class="availability">24/7 Support</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Information -->
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">📧</div>
+                <h3>Email Support</h3>
+                <p>For general inquiries and support</p>
+                <a href="mailto:support@mindcareindia.gov.in">support@mindcareindia.gov.in</a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">📞</div>
+                <h3>Phone Support</h3>
+                <p>Monday to Friday, 9 AM - 6 PM IST</p>
+                <a href="tel:+911800123456">1800-123-456 (Toll Free)</a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon">🏢</div>
+                <h3>Office Address</h3>
+                <p>Ministry of Health & Family Welfare<br>
+                Nirman Bhavan, New Delhi - 110011<br>
+                India</p>
+            </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="form-section">
+            <h2>Send Us a Message</h2>
+            
+            <div id="message" class="message"></div>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <select id="subject" name="subject" required>
+                        <option value="">Select a topic...</option>
+                        <option value="general">General Inquiry</option>
+                        <option value="technical">Technical Support</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="partnership">Partnership Opportunity</option>
+                        <option value="accessibility">Accessibility Issue</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message_text">Your Message *</label>
+                    <textarea id="message_text" name="message" required placeholder="Tell us how we can help you..."></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" id="submitBtn">Send Message</button>
+            </form>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <h4>How accurate is the AI assessment?</h4>
+                <p>Our machine learning model achieves 90.40% accuracy, trained on 5,000+ diverse mental health cases. However, it's meant to complement, not replace, professional diagnosis.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>Is my data secure and private?</h4>
+                <p>Yes! All data is encrypted using industry-standard protocols. We never share your personal information without explicit consent and comply with Indian data protection laws.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>How often should I take the assessment?</h4>
+                <p>We recommend taking the assessment monthly to track your mental health trends. However, you can take it as often as needed, especially if you notice changes in your well-being.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>Is the platform accessible for persons with disabilities?</h4>
+                <p>Absolutely! MindCare India is built with accessibility as a core feature. We support screen readers, keyboard navigation, and provide disability-specific assessment options.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>Do I need to pay for the assessment?</h4>
+                <p>No! MindCare India is completely free as part of the Government of India's initiative to make mental health support accessible to all citizens.</p>
+            </div>
+            
+            <div class="faq-item">
+                <h4>What if I'm in a mental health crisis?</h4>
+                <p>If you're experiencing a mental health emergency, please call one of the 24/7 crisis helplines listed above immediately. Our platform also provides emergency resources in assessment results.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MindCare India - Government of India Initiative</p>
+            <p>Ministry of Health & Family Welfare</p>
+            <p>Made with ❤️ for India</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const messageDiv = document.getElementById('message');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            // Simulate form submission (in production, this would call your API)
+            setTimeout(() => {
+                messageDiv.className = 'message success';
+                messageDiv.textContent = '✅ Thank you for contacting us! We\'ll respond within 24-48 hours.';
+                messageDiv.style.display = 'block';
+                
+                document.getElementById('contactForm').reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    messageDiv.style.display = 'none';
+                }, 5000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>

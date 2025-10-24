@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment Results - MindCare India</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .model-badge {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .result-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .status-icon {
+            font-size: 64px;
+            margin-bottom: 15px;
+        }
+        
+        .mental-health-status {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .confidence {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        
+        .risk-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .risk-low {
+            background: #4caf50;
+        }
+        
+        .risk-moderate {
+            background: #ff9800;
+        }
+        
+        .risk-high {
+            background: #f44336;
+        }
+        
+        .risk-critical {
+            background: #d32f2f;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .risk-factors-list {
+            list-style: none;
+        }
+        
+        .risk-factors-list li {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            border-radius: 5px;
+        }
+        
+        .recommendations-list {
+            list-style: none;
+        }
+        
+        .recommendations-list li {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #d4edda;
+            border-left: 4px solid #4caf50;
+            border-radius: 5px;
+        }
+        
+        .crisis-alert {
+            background: #ffebee;
+            border: 2px solid #f44336;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .crisis-alert h3 {
+            color: #d32f2f;
+            margin-bottom: 10px;
+        }
+        
+        .helpline {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        
+        .helpline strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #1976d2;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+        
+        .print-btn {
+            background: #4caf50;
+            color: white;
+        }
+        
+        .print-btn:hover {
+            background: #45a049;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .button-group, .logo {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏥 MindCare India</div>
+            <h1>Your Assessment Results</h1>
+            <div class="model-badge">🤖 AI-Powered Analysis (90.40% Accuracy)</div>
+        </div>
+        
+        <div id="resultsContent">
+            <!-- Results will be loaded here -->
+        </div>
+        
+        <div class="button-group">
+            <button onclick="window.print()" class="btn print-btn">📄 Print Results</button>
+            <a href="dashboard.html" class="btn btn-primary">View Dashboard</a>
+            <a href="assessment.html" class="btn btn-secondary">Take Another Assessment</a>
+        </div>
+    </div>
+    
+    <script>
+        // Load results from localStorage
+        const resultsData = localStorage.getItem('assessmentResult');
+        
+        if (!resultsData) {
+            document.getElementById('resultsContent').innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <h2>No assessment results found</h2>
+                    <p>Please complete an assessment first.</p>
+                    <a href="assessment.html" class="btn btn-primary">Take Assessment</a>
+                </div>
+            `;
+        } else {
+            const results = JSON.parse(resultsData);
+            const prediction = results.prediction;
+            
+            // Determine status icon
+            let statusIcon = '😊';
+            let statusClass = 'risk-low';
+            
+            if (prediction.riskLevel === 'Critical') {
+                statusIcon = '🚨';
+                statusClass = 'risk-critical';
+            } else if (prediction.riskLevel === 'High') {
+                statusIcon = '⚠️';
+                statusClass = 'risk-high';
+            } else if (prediction.riskLevel === 'Moderate') {
+                statusIcon = '😐';
+                statusClass = 'risk-moderate';
+            } else {
+                statusIcon = '😊';
+                statusClass = 'risk-low';
+            }
+            
+            let html = '';
+            
+            // Crisis alert for critical/high risk
+            if (prediction.riskLevel === 'Critical' || prediction.riskLevel === 'High') {
+                html += `
+                    <div class="crisis-alert">
+                        <h3>🚨 Immediate Attention Recommended</h3>
+                        <p>Based on your assessment, we strongly recommend seeking professional help immediately.</p>
+                        <div class="helpline">
+                            <strong>24/7 Crisis Helplines:</strong>
+                            AASRA: 9152987821<br>
+                            Vandrevala Foundation: 18602662345<br>
+                            iCall: 9152987821
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Main result card
+            html += `
+                <div class="result-card">
+                    <div class="status-icon">${statusIcon}</div>
+                    <div class="mental-health-status">${prediction.mentalHealthStatus}</div>
+                    <div class="confidence">Confidence: ${prediction.confidence}%</div>
+                    <div class="risk-badge ${statusClass}">Risk Level: ${prediction.riskLevel}</div>
+                </div>
+            `;
+            
+            // Risk Factors
+            if (prediction.riskFactors && prediction.riskFactors.length > 0) {
+                html += `
+                    <div class="section">
+                        <div class="section-title">⚠️ Identified Risk Factors</div>
+                        <ul class="risk-factors-list">
+                `;
+                
+                prediction.riskFactors.forEach(factor => {
+                    html += `<li>${factor}</li>`;
+                });
+                
+                html += `
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            // Recommendations
+            if (prediction.recommendations && prediction.recommendations.length > 0) {
+                html += `
+                    <div class="section">
+                        <div class="section-title">💡 Personalized Recommendations</div>
+                        <ul class="recommendations-list">
+                `;
+                
+                prediction.recommendations.forEach(rec => {
+                    html += `<li>${rec}</li>`;
+                });
+                
+                html += `
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            // Additional information
+            html += `
+                <div class="section">
+                    <div class="section-title">📊 Understanding Your Results</div>
+                    <p style="line-height: 1.8; color: #555;">
+                        Your mental health assessment has been analyzed using our AI model trained on 5,000+ cases 
+                        with 90.40% accuracy. The prediction is based on 27 comprehensive questions covering sleep, 
+                        lifestyle, mental health indicators, social support, and work-life factors.
+                    </p>
+                    <p style="line-height: 1.8; color: #555; margin-top: 15px;">
+                        <strong>Important:</strong> This assessment is for informational purposes only and does not 
+                        replace professional medical diagnosis. Please consult with a licensed mental health professional 
+                        for proper evaluation and treatment.
+                    </p>
+                </div>
+            `;
+            
+            document.getElementById('resultsContent').innerHTML = html;
+        }
+    </script>
+</body>
+</html>

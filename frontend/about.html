@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - MindCare India</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section h2 {
+            font-size: 36px;
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .section h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .section p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .stat-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #667eea;
+        }
+        
+        .stat-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .team-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .team-card h4 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .team-card .role {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 40px 0;
+        }
+        
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 30px;
+            border-left: 3px solid #667eea;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: "●";
+            position: absolute;
+            left: -9px;
+            top: 0;
+            color: #667eea;
+            font-size: 20px;
+        }
+        
+        .timeline-item h4 {
+            font-size: 20px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            background: #2d3748;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">🏥 MindCare India</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>About MindCare India</h1>
+        <p>Empowering Mental Health Through AI-Powered Assessment and Support</p>
+    </section>
+    
+    <div class="container">
+        <section class="section">
+            <h2>Our Mission</h2>
+            <p>
+                MindCare India is a Government of India initiative dedicated to making mental health assessment 
+                and support accessible to all citizens, with a special focus on persons with disabilities. We 
+                believe that mental health is a fundamental right, and everyone deserves access to quality mental 
+                health services regardless of their physical abilities or socioeconomic status.
+            </p>
+            <p>
+                Our AI-powered platform leverages cutting-edge machine learning technology with 90.40% accuracy 
+                to provide personalized mental health assessments and recommendations. We combine technology with 
+                compassion to create a supportive environment for mental wellness.
+            </p>
+        </section>
+        
+        <section class="section">
+            <h2>Why We Exist</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-value">197M+</div>
+                    <div class="stat-label">Indians with Mental Health Conditions</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍⚕️</div>
+                    <div class="stat-value">0.75</div>
+                    <div class="stat-label">Psychiatrists per 100,000 People</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">♿</div>
+                    <div class="stat-value">26.8M</div>
+                    <div class="stat-label">Persons with Disabilities in India</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">🚨</div>
+                    <div class="stat-value">70%</div>
+                    <div class="stat-label">Don't Seek Help Due to Stigma</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Our Technology</h2>
+            <h3>🤖 AI-Powered Assessment</h3>
+            <p>
+                Our machine learning model is trained on 5,000+ diverse mental health cases and achieves 90.40% 
+                prediction accuracy. The Decision Tree algorithm analyzes 27 comprehensive factors including sleep 
+                patterns, lifestyle habits, stress levels, social support, and work-life balance to provide 
+                personalized mental health assessments.
+            </p>
+            
+            <h3>🔒 Privacy & Security</h3>
+            <p>
+                Your data is encrypted and protected with enterprise-grade security. We follow strict data protection 
+                protocols and comply with Indian privacy regulations. Your assessment results are confidential and 
+                accessible only to you.
+            </p>
+            
+            <h3>♿ Accessibility First</h3>
+            <p>
+                Our platform is designed with accessibility at its core. We support screen readers, keyboard navigation, 
+                and provide multilingual support in Hindi, English, and regional languages to ensure everyone can 
+                access mental health services.
+            </p>
+        </section>
+        
+        <section class="section">
+            <h2>Our Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>September 2025 - Project Inception</h4>
+                    <p>MindCare India project launched as part of Government of India's Digital India initiative to improve mental health accessibility.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>October 2025 - ML Model Development</h4>
+                    <p>Trained Decision Tree model on 5,000 diverse mental health cases achieving 90.40% accuracy. Focused on inclusive data representing persons with disabilities.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>October 2025 - Platform Launch</h4>
+                    <p>Launched full-stack web platform with 27-question assessment, AI predictions, and personalized recommendations. Built with Node.js, MySQL, and Python ML integration.</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <h4>Future - Expansion Plans</h4>
+                    <p>Planning to add video consultations, multilingual voice support, community forums, and integration with government healthcare systems.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>Development Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h4> M Dheeraj</h4>
+                    <p class="role">Team Lead & Full-Stack Developer</p>
+                    <p>Database design, Backend API development, ML integration</p>
+                </div>
+                
+                <div class="team-card">
+                    <h4>Dhanush Kumar</h4>
+                    <p class="role">ML Engineer & Data Scientist</p>
+                    <p>Machine learning model training, Data analysis, Model optimization</p>
+                </div>
+                
+                <div class="team-card">
+                    <h4>Harsha D </h4>
+                    <p class="role">Frontend Developer</p>
+                    <p>UI/UX design, Accessibility features, Responsive design</p>
+                </div>
+                
+                <div class="team-card">
+                    <h4>Darshan D S</h4>
+                    <p class="role">Backend Developer</p>
+                    <p>API development, Security implementation, Database management</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section" style="text-align: center;">
+            <h2>Join Us in Making Mental Health Accessible</h2>
+            <p style="max-width: 800px; margin: 0 auto 30px;">
+                Whether you're seeking support or want to contribute to mental health awareness, 
+                MindCare India is here for you.
+            </p>
+            <a href="register.html" class="btn btn-primary">Start Your Free Assessment</a>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 MindCare India - Government of India Initiative</p>
+            <p>Empowering Mental Health for All Citizens</p>
+            <p>Made with ❤️ for India | ML Model Accuracy: 90.40%</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Assessment - MindCare India</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 32px;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: #667eea;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .question-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .question-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .question {
+            margin-bottom: 30px;
+        }
+        
+        .question-number {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .question-text {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .scale-input {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .scale-input input[type="range"] {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .scale-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            min-width: 50px;
+        }
+        
+        .scale-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        
+        .btn-secondary {
+            background: #e0e0e0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .message {
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            display: none;
+        }
+        
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .info-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #2196f3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🏥 MindCare India</div>
+            <h1>Mental Health Assessment</h1>
+            <p class="description">Answer 27 questions to receive your personalized mental health evaluation powered by AI (90.40% accuracy)</p>
+        </div>
+        
+        <div class="info-box">
+            ℹ️ All information is confidential and secure. This assessment takes approximately 5-7 minutes to complete.
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        
+        <div id="message" class="message"></div>
+        
+        <form id="assessmentForm">
+            <!-- Section 1: Basic Information -->
+            <div class="question-section active" data-section="1">
+                <div class="question-number">Questions 1-5: Basic Information</div>
+                
+                <div class="form-group">
+                    <label for="age">1. What is your age? *</label>
+                    <input type="number" id="age" name="age" min="18" max="100" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender">2. Gender *</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select...</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="educationLevel">3. Education Level *</label>
+                    <select id="educationLevel" name="educationLevel" required>
+                        <option value="">Select...</option>
+                        <option value="No formal education">No formal education</option>
+                        <option value="Primary education">Primary education</option>
+                        <option value="High School">High School</option>
+                        <option value="Graduate">Graduate</option>
+                        <option value="Postgraduate">Postgraduate</option>
+                        <option value="PhD">PhD</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="physicalDisability">4. Do you have a physical disability? *</label>
+                    <select id="physicalDisability" name="physicalDisability" required>
+                        <option value="">Select...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="chronicIllness">5. Do you have any chronic illness? *</label>
+                    <select id="chronicIllness" name="chronicIllness" required>
+                        <option value="">Select...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Section 2: Sleep & Lifestyle -->
+            <div class="question-section" data-section="2">
+                <div class="question-number">Questions 6-11: Sleep & Lifestyle</div>
+                
+                <div class="form-group">
+                    <label for="sleepHours">6. Average hours of sleep per night *</label>
+                    <input type="number" id="sleepHours" name="sleepHours" min="0" max="24" step="0.5" required placeholder="e.g., 7.5">
+                </div>
+                
+                <div class="form-group">
+                    <label for="sleepQuality">7. Sleep quality (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="sleepQuality" name="sleepQuality" min="1" max="10" value="5" oninput="updateValue('sleepQuality')">
+                        <span class="scale-value" id="sleepQualityValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>Very Poor</span>
+                        <span>Excellent</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dietQuality">8. Diet quality *</label>
+                    <select id="dietQuality" name="dietQuality" required>
+                        <option value="">Select...</option>
+                        <option value="Poor">Poor</option>
+                        <option value="Average">Average</option>
+                        <option value="Good">Good</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="exerciseFreq">9. Exercise frequency (times per week) *</label>
+                    <input type="number" id="exerciseFreq" name="exerciseFreq" min="0" max="7" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="screenTime">10. Daily screen time (hours) *</label>
+                    <input type="number" id="screenTime" name="screenTime" min="0" max="24" step="0.5" required placeholder="e.g., 8.5">
+                </div>
+                
+                <div class="form-group">
+                    <label for="substanceUse">11. Substance use *</label>
+                    <select id="substanceUse" name="substanceUse" required>
+                        <option value="">Select...</option>
+                        <option value="None">None</option>
+                        <option value="Alcohol">Alcohol</option>
+                        <option value="Smoking">Smoking</option>
+                        <option value="Drugs">Drugs</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Section 3: Mental Health Indicators -->
+            <div class="question-section" data-section="3">
+                <div class="question-number">Questions 12-18: Mental Health Indicators</div>
+                
+                <div class="form-group">
+                    <label for="stressLevel">12. Stress level (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="stressLevel" name="stressLevel" min="1" max="10" value="5" oninput="updateValue('stressLevel')">
+                        <span class="scale-value" id="stressLevelValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>No Stress</span>
+                        <span>Extreme Stress</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="anxietyLevel">13. Anxiety level (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="anxietyLevel" name="anxietyLevel" min="1" max="10" value="5" oninput="updateValue('anxietyLevel')">
+                        <span class="scale-value" id="anxietyLevelValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>No Anxiety</span>
+                        <span>Severe Anxiety</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="depressionSymptoms">14. Depression symptoms (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="depressionSymptoms" name="depressionSymptoms" min="1" max="10" value="5" oninput="updateValue('depressionSymptoms')">
+                        <span class="scale-value" id="depressionSymptomsValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>None</span>
+                        <span>Severe</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="selfEsteem">15. Self-esteem (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="selfEsteem" name="selfEsteem" min="1" max="10" value="5" oninput="updateValue('selfEsteem')">
+                        <span class="scale-value" id="selfEsteemValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>Very Low</span>
+                        <span>Very High</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="copingSkills">16. Coping skills (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="copingSkills" name="copingSkills" min="1" max="10" value="5" oninput="updateValue('copingSkills')">
+                        <span class="scale-value" id="copingSkillsValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>Poor</span>
+                        <span>Excellent</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lifeSatisfaction">17. Life satisfaction (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="lifeSatisfaction" name="lifeSatisfaction" min="1" max="10" value="5" oninput="updateValue('lifeSatisfaction')">
+                        <span class="scale-value" id="lifeSatisfactionValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>Not Satisfied</span>
+                        <span>Very Satisfied</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lifePurpose">18. Sense of life purpose (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="lifePurpose" name="lifePurpose" min="1" max="10" value="5" oninput="updateValue('lifePurpose')">
+                        <span class="scale-value" id="lifePurposeValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>No Purpose</span>
+                        <span>Strong Purpose</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Section 4: Social & Support -->
+            <div class="question-section" data-section="4">
+                <div class="question-number">Questions 19-24: Social & Support System</div>
+                
+                <div class="form-group">
+                    <label for="familySupport">19. Family support (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="familySupport" name="familySupport" min="1" max="10" value="5" oninput="updateValue('familySupport')">
+                        <span class="scale-value" id="familySupportValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>No Support</span>
+                        <span>Strong Support</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="socialIsolation">20. Social isolation (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="socialIsolation" name="socialIsolation" min="1" max="10" value="5" oninput="updateValue('socialIsolation')">
+                        <span class="scale-value" id="socialIsolationValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>Not Isolated</span>
+                        <span>Very Isolated</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lonelinessFrequency">21. Loneliness frequency (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="lonelinessFrequency" name="lonelinessFrequency" min="1" max="10" value="5" oninput="updateValue('lonelinessFrequency')">
+                        <span class="scale-value" id="lonelinessFrequencyValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>Never</span>
+                        <span>Always</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="relationshipQuality">22. Relationship quality (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="relationshipQuality" name="relationshipQuality" min="1" max="10" value="5" oninput="updateValue('relationshipQuality')">
+                        <span class="scale-value" id="relationshipQualityValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>Poor</span>
+                        <span>Excellent</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="disabilityAdjustment">23. Disability adjustment/adaptation (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="disabilityAdjustment" name="disabilityAdjustment" min="1" max="10" value="10" oninput="updateValue('disabilityAdjustment')">
+                        <span class="scale-value" id="disabilityAdjustmentValue">10</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>Poor</span>
+                        <span>Excellent</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="accessTherapy">24. Do you have access to therapy/counseling? *</label>
+                    <select id="accessTherapy" name="accessTherapy" required>
+                        <option value="">Select...</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Section 5: Work & Financial -->
+            <div class="question-section" data-section="5">
+                <div class="question-number">Questions 25-27: Work & Financial Status</div>
+                
+                <div class="form-group">
+                    <label for="workStudyPressure">25. Work/Study pressure *</label>
+                    <select id="workStudyPressure" name="workStudyPressure" required>
+                        <option value="">Select...</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="weeklyWorkStudyHours">26. Weekly work/study hours *</label>
+                    <input type="number" id="weeklyWorkStudyHours" name="weeklyWorkStudyHours" min="0" max="168" required placeholder="e.g., 40">
+                </div>
+                
+                <div class="form-group">
+                    <label for="financialStress">27. Financial stress (1-10) *</label>
+                    <div class="scale-input">
+                        <input type="range" id="financialStress" name="financialStress" min="1" max="10" value="5" oninput="updateValue('financialStress')">
+                        <span class="scale-value" id="financialStressValue">5</span>
+                    </div>
+                    <div class="scale-labels">
+                        <span>No Stress</span>
+                        <span>Extreme Stress</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="button-group">
+                <button type="button" class="btn btn-secondary" id="prevBtn" onclick="previousSection()" style="display:none">Previous</button>
+                <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextSection()">Next</button>
+                <button type="submit" class="btn btn-primary" id="submitBtn" style="display:none">Submit Assessment</button>
+            </div>
+        </form>
+    </div>
+    
+    <script>
+        const API_BASE_URL = 'http://localhost:5000/api';
+        let currentSection = 1;
+        const totalSections = 5;
+        
+        // Check authentication
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+        
+        function updateValue(fieldId) {
+            const input = document.getElementById(fieldId);
+            const valueDisplay = document.getElementById(fieldId + 'Value');
+            valueDisplay.textContent = input.value;
+        }
+        
+        function updateProgress() {
+            const progress = (currentSection / totalSections) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+        
+        function showSection(sectionNum) {
+            document.querySelectorAll('.question-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            document.querySelector(`[data-section="${sectionNum}"]`).classList.add('active');
+            
+            // Update buttons
+            document.getElementById('prevBtn').style.display = sectionNum === 1 ? 'none' : 'block';
+            document.getElementById('nextBtn').style.display = sectionNum === totalSections ? 'none' : 'block';
+            document.getElementById('submitBtn').style.display = sectionNum === totalSections ? 'block' : 'none';
+            
+            updateProgress();
+            window.scrollTo(0, 0);
+        }
+        
+        function nextSection() {
+            if (currentSection < totalSections) {
+                currentSection++;
+                showSection(currentSection);
+            }
+        }
+        
+        function previousSection() {
+            if (currentSection > 1) {
+                currentSection--;
+                showSection(currentSection);
+            }
+        }
+        
+        document.getElementById('assessmentForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const messageDiv = document.getElementById('message');
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Analyzing... (AI Model Processing)';
+            
+            const formData = {
+                age: parseInt(document.getElementById('age').value),
+                gender: document.getElementById('gender').value,
+                educationLevel: document.getElementById('educationLevel').value,
+                sleepHours: parseFloat(document.getElementById('sleepHours').value),
+                sleepQuality: parseFloat(document.getElementById('sleepQuality').value),
+                dietQuality: document.getElementById('dietQuality').value,
+                exerciseFreq: parseInt(document.getElementById('exerciseFreq').value),
+                stressLevel: parseInt(document.getElementById('stressLevel').value),
+                anxietyLevel: parseInt(document.getElementById('anxietyLevel').value),
+                depressionSymptoms: parseInt(document.getElementById('depressionSymptoms').value),
+                selfEsteem: parseInt(document.getElementById('selfEsteem').value),
+                copingSkills: parseInt(document.getElementById('copingSkills').value),
+                lifeSatisfaction: parseInt(document.getElementById('lifeSatisfaction').value),
+                lifePurpose: parseInt(document.getElementById('lifePurpose').value),
+                familySupport: parseInt(document.getElementById('familySupport').value),
+                socialIsolation: parseInt(document.getElementById('socialIsolation').value),
+                lonelinessFrequency: parseInt(document.getElementById('lonelinessFrequency').value),
+                relationshipQuality: parseInt(document.getElementById('relationshipQuality').value),
+                physicalDisability: document.getElementById('physicalDisability').value,
+                disabilityAdjustment: parseInt(document.getElementById('disabilityAdjustment').value),
+                chronicIllness: document.getElementById('chronicIllness').value,
+                workStudyPressure: document.getElementById('workStudyPressure').value,
+                weeklyWorkStudyHours: parseInt(document.getElementById('weeklyWorkStudyHours').value),
+                financialStress: parseInt(document.getElementById('financialStress').value),
+                accessTherapy: document.getElementById('accessTherapy').value,
+                substanceUse: document.getElementById('substanceUse').value,
+                screenTime: parseFloat(document.getElementById('screenTime').value)
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/assessment/submit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Store results and redirect
+                    localStorage.setItem('assessmentResult', JSON.stringify(data));
+                    window.location.href = 'results.html';
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.textContent = '❌ ' + data.message;
+                    messageDiv.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Assessment';
+                }
+            } catch (error) {
+                messageDiv.className = 'message error';
+                messageDiv.textContent = '❌ Connection error. Please check if the server is running.';
+                messageDiv.style.display = 'block';
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Assessment';
+            }
+        });
+        
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>
